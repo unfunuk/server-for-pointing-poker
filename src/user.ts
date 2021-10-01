@@ -8,6 +8,7 @@ export interface UserInterface {
   initials: string;
   jobPosition: string;
   avatarSource: string;
+  sessionId: string;
 }
 const User = new mongoose.Schema({
   id: { type: String, required: true },
@@ -17,5 +18,6 @@ const User = new mongoose.Schema({
   initials: { type: String, required: true },
   jobPosition: { type: String, required: true },
   avatarSource: { type: String, required: true },
+  sessionId: { type: String, required: true },
 });
 export default mongoose.model("user", User);
