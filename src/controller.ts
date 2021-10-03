@@ -84,7 +84,7 @@ class Controller {
   async deleteSession(req: any, res: any) {
     try {
       const { sessionId } = req.params;
-      const session = await User.findOneAndRemove({ sessionId });
+      const session = await Session.findOneAndRemove({ sessionId });
       res.json(session);
     } catch (e) {
       res.status(500).json(e);
