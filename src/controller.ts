@@ -12,19 +12,20 @@ class Controller {
     }
   }
 
-  async getUsers(req: any, res: any) {
+  async getUserById(req: any, res: any) {
     try {
-      const user = await User.find();
+      const { id } = req.params;
+      const user = await User.find({ id });
       res.json(user);
     } catch (e) {
       res.status(500).json(e);
     }
   }
 
-  async getUserById(req: any, res: any) {
+  async getUserByRole(req: any, res: any) {
     try {
-      const { id } = req.params;
-      const user = await User.find({ id });
+      const { role } = req.params;
+      const user = await User.find({ role });
       res.json(user);
     } catch (e) {
       res.status(500).json(e);
@@ -53,7 +54,8 @@ class Controller {
 
   async deleteUsers(req: any, res: any) {
     try {
-      const users = await User.deleteMany({});
+      const { sessionId } = req.params;
+      const users = await User.deleteMany({ sessionId });
       res.json(users);
     } catch (e) {
       res.status(500).json(e);
