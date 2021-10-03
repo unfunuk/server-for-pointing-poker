@@ -22,7 +22,7 @@ class Controller {
     }
   }
 
-  async getUserByRole(req: any, res: any) {
+  async getUsersByRole(req: any, res: any) {
     try {
       const { role } = req.params;
       const user = await User.find({ role });
