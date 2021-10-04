@@ -10,7 +10,8 @@ router.get("/users/role/:role", Controller.getUsersByRole);
 router.delete("/users/id/:id", Controller.deleteUser);
 router.delete("/users/session/:sessionId", Controller.deleteUsers);
 router.post("/session", Controller.createSession);
-router.get("/session/session/:sessionId", Controller.getSession);
-router.delete("/session/session/:sessionId", Controller.deleteSession);
+router.get("/session/:sessionId", Controller.getSession);
+router.delete("/session/:sessionId", Controller.deleteSession);
+router.put("/session/:sessionId", Controller.putSession);
 
 export default router;

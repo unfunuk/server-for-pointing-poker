@@ -90,5 +90,18 @@ class Controller {
       res.status(500).json(e);
     }
   }
+
+  async putSession(req: any, res: any) {
+    try {
+      const { sessionId } = req.params;
+      const session = await Session.findOneAndUpdate(
+        { sessionId },
+        { isGameStarted: true }
+      );
+      res.json(session);
+    } catch (e) {
+      res.status(500).json(e);
+    }
+  }
 }
 export default new Controller();
