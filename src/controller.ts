@@ -147,7 +147,7 @@ class Controller {
   async editIssue(req: any, res: any) {
     try {
       const { id } = req.params;
-      const issue = await Session.findOneAndUpdate({ id }, req.body, {
+      const issue = await Issues.findOneAndUpdate({ id }, req.body, {
         new: true,
       });
       res.json(issue);
