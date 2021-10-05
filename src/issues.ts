@@ -4,7 +4,7 @@ export interface IssueInterface {
   sessionId: string;
   title: string;
   priority: Priorities;
-  id: number;
+  id: string;
 }
 export enum Priorities {
   Low = "Low priority",
@@ -15,7 +15,7 @@ const Issues = new mongoose.Schema({
   sessionId: { type: String, required: true },
   title: { type: String, required: true },
   priority: { type: Priorities, required: true },
-  id: { type: Number, required: true },
+  id: { type: String, required: true },
 });
 
 export default mongoose.model("issues", Issues);
