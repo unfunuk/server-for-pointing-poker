@@ -12,6 +12,11 @@ router.delete("/users/session/:sessionId", Controller.deleteUsers);
 router.post("/session", Controller.createSession);
 router.get("/session/:sessionId", Controller.getSession);
 router.delete("/session/:sessionId", Controller.deleteSession);
-router.put("/session/:sessionId", Controller.putSession);
+router.put("/session/:sessionId", Controller.editSession);
+router.post("/issues", Controller.createIssue);
+router.get("/issues/session/:sessionId", Controller.getIssues);
+router.put("/issues/id/:id", Controller.editIssue);
+router.delete("/issues/id/:id", Controller.deleteIssueById);
+router.delete("/issues/session/:sessionId", Controller.deleteIssues);
 
 export default router;

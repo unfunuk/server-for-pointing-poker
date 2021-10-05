@@ -1,6 +1,7 @@
 /* eslint-disable class-methods-use-this */
 import User from "./user";
 import Session from "./session";
+import Issues from "./issues";
 
 class Controller {
   async createUser(req: any, res: any) {
@@ -91,7 +92,7 @@ class Controller {
     }
   }
 
-  async putSession(req: any, res: any) {
+  async editSession(req: any, res: any) {
     try {
       const { sessionId } = req.params;
       const session = await Session.findOneAndUpdate(
@@ -99,6 +100,55 @@ class Controller {
         { isGameStarted: true }
       );
       res.json(session);
+    } catch (e) {
+      res.status(500).json(e);
+    }
+  }
+
+  async createIssue(req: any, res: any) {
+    try {
+      const issue = await Issues.create(req.body);
+      res.json(issue);
+    } catch (e) {
+      res.status(500).json(e);
+    }
+  }
+
+  async deleteIssueById(req: any, res: any) {
+    try {
+      const { id } = req.params;
+      const issue = await Issues.findOneAndRemove({ id });
+      res.json(issue);
+    } catch (e) {
+      res.status(500).json(e);
+    }
+  }
+
+  async deleteIssues(req: any, res: any) {
+    try {
+      const { sessionId } = req.params;
+      const issues = await Issues.deleteMany({ sessionId });
+      res.json(issues);
+    } catch (e) {
+      res.status(500).json(e);
+    }
+  }
+
+  async getIssues(req: any, res: any) {
+    try {
+      const { sessionId } = req.params;
+      const issues = await Issues.find({ sessionId });
+      res.json(issues);
+    } catch (e) {
+      res.status(500).json(e);
+    }
+  }
+
+  async editIssue(req: any, res: any) {
+    try {
+      const { id } = req.params;
+      const issue = await Session.findOneAndUpdate({ id }, req.body);
+      res.json(issue);
     } catch (e) {
       res.status(500).json(e);
     }
