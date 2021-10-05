@@ -144,6 +144,16 @@ class Controller {
     }
   }
 
+  async getIssue(req: any, res: any) {
+    try {
+      const { id } = req.params;
+      const issue = await Issues.find({ id });
+      res.json(issue);
+    } catch (e) {
+      res.status(500).json(e);
+    }
+  }
+
   async editIssue(req: any, res: any) {
     try {
       const { id } = req.params;
