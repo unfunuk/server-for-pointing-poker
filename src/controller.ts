@@ -96,10 +96,7 @@ class Controller {
   async editSession(req: any, res: any) {
     try {
       const { sessionId } = req.params;
-      const session = await Session.findOneAndUpdate(
-        { sessionId },
-        { isGameStarted: true }
-      );
+      const session = await Session.findOneAndUpdate({ sessionId }, req.body);
       res.json(session);
     } catch (e) {
       res.status(500).json(e);
