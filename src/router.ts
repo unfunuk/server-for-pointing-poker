@@ -19,5 +19,9 @@ router.get("/issues/id/:id", Controller.getIssue);
 router.put("/issues/id/:id", Controller.editIssue);
 router.delete("/issues/id/:id", Controller.deleteIssueById);
 router.delete("/issues/session/:sessionId", Controller.deleteIssues);
+router.post("/cards", Controller.createCard);
+router.get("/cards/session/:sessionId", Controller.getCards);
+router.delete("/cards/session/:sessionId", Controller.deleteCards);
+router.delete("/cards/id/:id", Controller.deleteCardById);
 
 export default router;

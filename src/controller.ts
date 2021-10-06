@@ -2,6 +2,7 @@
 import User from "./user";
 import Session from "./session";
 import Issues from "./issues";
+import Cards from "./cards";
 
 class Controller {
   async createUser(req: any, res: any) {
@@ -161,6 +162,45 @@ class Controller {
         new: true,
       });
       res.json(issue);
+    } catch (e) {
+      res.status(500).json(e);
+    }
+  }
+
+  async getCards(req: any, res: any) {
+    try {
+      const { sessionId } = req.params;
+      const cards = await Cards.find({ sessionId });
+      res.json(cards);
+    } catch (e) {
+      res.status(500).json(e);
+    }
+  }
+
+  async deleteCardById(req: any, res: any) {
+    try {
+      const { id } = req.params;
+      const card = await Cards.findOneAndRemove({ id });
+      res.json(card);
+    } catch (e) {
+      res.status(500).json(e);
+    }
+  }
+
+  async deleteCards(req: any, res: any) {
+    try {
+      const { sessionId } = req.params;
+      const cards = await Cards.deleteMany({ sessionId });
+      res.json(cards);
+    } catch (e) {
+      res.status(500).json(e);
+    }
+  }
+
+  async createCard(req: any, res: any) {
+    try {
+      const card = await Cards.create(req.body);
+      res.json(card);
     } catch (e) {
       res.status(500).json(e);
     }
